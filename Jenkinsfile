@@ -1,7 +1,19 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "C:\\Users\\admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin;${env.PATH}"
+    }
+
     stages {
+
+        stage('Check Docker') {
+            steps {
+                bat 'echo %PATH%'
+                bat 'where docker'
+                bat 'docker --version'
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
